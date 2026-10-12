@@ -29,7 +29,6 @@ jobs:
           sudo apt-get install -y \
             python3-pip \
             python3-dev \
-            build-python \
             git \
             zip \
             unzip \
