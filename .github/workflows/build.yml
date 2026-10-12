@@ -1,0 +1,21 @@
+name: Compilar APK SOYO
+
+on: [push]
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v3
+
+      - name: Compilar con Buildozer
+        uses: ArtemSBulgakov/buildozer-action@v1
+        id: buildozer
+        with:
+          command: buildozer -v android debug
+
+      - name: Subir APK generada
+        uses: actions/upload-artifact@v3
+        with:
+          name: app-debug
+          path: bin/*.apk
