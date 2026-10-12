@@ -36,6 +36,16 @@ jobs:
           mkdir -p ~/.android
           echo "### Turist stamp" > ~/.android/repositories.cfg
 
+      - name: Restaurar Cache de Buildozer
+        uses: actions/cache@v4
+        with:
+          path: |
+            .buildozer/
+            ~/.buildozer/
+          key: ${{ runner.os }}-buildozer-${{ hashFiles('buildozer.spec') }}
+          restore-keys: |
+            ${{ runner.os }}-buildozer-
+
       - name: Compilar APK con Buildozer
         run: |
           yes | buildozer -v android debug
